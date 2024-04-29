@@ -41,9 +41,9 @@ function Index() {
 
 return (
         <div className="text-center py-28">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleRefresh}>Elegir</button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-gray-950 font-bold py-2 px-4 rounded" onClick={handleRefresh}>Elegir</button>
             
-            <div className="text-xl font-semibold">
+            <div className="text-xl text-yellow-600 font-semibold">
                 {message}</div>
         </div>
     );
