@@ -14,8 +14,14 @@ const conn =  await mysql.createConnection(config);
 
 
 
-export async function GET(){
-  const result = await conn.query("SELECT NOW()")
-    
-    console.log(result)
- return NextResponse.json({message: 'Hello World'})}
+export async function GET() {
+  try {
+      const [rows] = await conn.query("SELECT NOW()");
+      const now = rows[0]['NOW()'];
+      console.log(now);
+      return NextResponse.json({ message: now });
+  } catch (error) {
+      console.error("Error:", error);
+      return NextResponse.error({ message: "Error al obtener la fecha actual" });
+  }
+}
