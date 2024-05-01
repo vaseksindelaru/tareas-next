@@ -4,19 +4,15 @@ import { useRouter } from 'next/navigation';
 
 
 function Index() {
-    const router = useRouter()
+    const router = useRouter();
     const [message, setMessage] = useState("Que estudiare hoy?");
     
-    const handleRefresh = async () => {
+    const handleRefresh = () => {
         try {
-            const response = await fetch("http://127.0.0.1:8080/postgres.py");
-            if (!response.ok) {
-                throw new Error('Failed to fetch data');
-            }
-            const data = await response.json();
+            const random_number = Math.floor(Math.random() * 2) + 1;
             let destino = "/";
 
-            switch (data.random_number) {
+            switch (random_number) {
                 case 1:
                     setMessage("Props");
                     destino = '/page1';
@@ -26,10 +22,11 @@ function Index() {
                     destino = '/page2';
                     break;
                 default:
-                    break;} 
+                    break;
+            } 
             
             setTimeout(function(){
-                router.push(destino)
+                router.push(destino);
                 console.log("Hola Mundo");
             }, 3000);
 
@@ -39,12 +36,14 @@ function Index() {
         }
     };
 
-return (
+    return (
         <div className="text-center py-28">
-            <button className="bg-blue-500 hover:bg-blue-700 text-gray-950 font-bold py-2 px-4 rounded" onClick={handleRefresh}>Elegir</button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-gray-950 font-bold py-2 px-4 rounded" 
+            onClick={handleRefresh}>Elegir</button>
             
             <div className="text-xl text-yellow-600 font-semibold">
-                {message}</div>
+                {message}
+            </div>
         </div>
     );
 }
